@@ -1,0 +1,107 @@
+:root {
+  --bg: #ececec;
+  --card: #fff;
+  --line: #d0d0d0;
+  --text: #222;
+  --muted: #666;
+  --ball: 46px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.6;
+}
+
+.board {
+  max-width: 520px;
+  margin: 16px auto;
+  padding: 20px 16px 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+}
+h1 { flex: 1 0 100%; margin: 0; font-size: 1.4rem; }
+h2 { margin: 20px 0 6px; font-size: .95rem; }
+
+.mode { font-size: .9rem; }
+select { margin-left: 4px; padding: 3px 6px; font: inherit; }
+
+.rules { margin-top: 12px; font-size: .9rem; color: var(--muted); }
+.rules summary { cursor: pointer; }
+.rules p { margin: 6px 0 0; }
+
+.timer { margin: 12px 0 0; font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+.timer[hidden] { display: none; }
+.timer.warn { color: #d00; font-weight: 700; }
+
+/* ボール */
+.row { display: flex; flex-wrap: wrap; gap: 8px; min-height: var(--ball); }
+
+.ball, .slot {
+  width: var(--ball);
+  height: var(--ball);
+  flex: none;
+  padding: 0;
+  border-radius: 50%;
+}
+.ball { border: 1px solid rgba(0, 0, 0, .3); }
+.slot {
+  display: grid;
+  place-items: center;
+  border: 1px dashed #aaa;
+  background: #f3f3f3;
+  color: #999;
+}
+button.ball { cursor: pointer; }
+button.ball:hover:not(:disabled) { outline: 2px solid #888; outline-offset: 2px; }
+button.ball:disabled { opacity: .35; cursor: default; }
+
+/* 履歴 */
+.history { list-style: none; margin: 0; padding: 0; }
+.history:empty::before { content: "まだ予想がありません。"; color: var(--muted); font-size: .9rem; }
+.history li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+.history .n { width: 1.6em; color: var(--muted); font-size: .85rem; }
+.history .ball { width: calc(var(--ball) * .74); height: calc(var(--ball) * .74); }
+.score { margin-left: auto; font-size: .9rem; white-space: nowrap; }
+.score b { margin: 0 2px; font-size: 1.1rem; }
+
+/* 操作 */
+.palette { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0 14px; }
+.actions { display: flex; gap: 8px; }
+button {
+  font: inherit;
+  padding: 8px 16px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #fff;
+  color: inherit;
+  cursor: pointer;
+}
+button.primary { background: #222; border-color: #222; color: #fff; }
+.actions .primary { flex: 1; }
+button:disabled:not(.ball) { opacity: .4; cursor: default; }
+button:focus-visible, select:focus-visible, summary:focus-visible {
+  outline: 2px solid #1c7ed6;
+  outline-offset: 2px;
+}
+
+.message { min-height: 1.6em; margin: 14px 0 6px; font-weight: 700; }
+#restart[hidden] { display: none; }
