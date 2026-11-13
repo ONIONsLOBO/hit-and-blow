@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ヒット&ブロー</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="board">
+    <header>
+      <h1>ヒット&amp;ブロー</h1>
+      <label class="mode">
+        モード
+        <select id="mode">
+          <option value="player" selected>自分が当てる</option>
+          <option value="cpu">CPUが当てる</option>
+          <option value="versus">交互に対戦</option>
+        </select>
+      </label>
+      <label class="mode">
+        ボールの数
+        <select id="slots">
+          <option value="4" selected>4個</option>
+          <option value="5">5個</option>
+          <option value="6">6個</option>
+          <option value="7">7個</option>
+          <option value="8">8個</option>
+          <option value="9">9個</option>
+          <option value="10">10個</option>
+        </select>
+      </label>
+      <label class="mode">
+        制限時間
+        <select id="limit">
+          <option value="0" selected>なし</option>
+          <option value="1">1分</option>
+          <option value="2">2分</option>
+          <option value="3">3分</option>
+          <option value="4">4分</option>
+          <option value="5">5分</option>
+          <option value="6">6分</option>
+          <option value="7">7分</option>
+          <option value="8">8分</option>
+          <option value="9">9分</option>
+          <option value="10">10分</option>
+        </select>
+      </label>
+    </header>
+
+    <details class="rules">
+      <summary>ルール</summary>
+      <p>答えは、同じ色を重ねずに並べたボールです(6個までは6色、7個以上はボールの数と同じ色数)。予想では同じ色を何回使ってもOKです。<br>
+        HIT は色も位置も合っている数、BLOW は色だけ合っている数です。10回以内に当てましょう。<br>「CPUが当てる」モードでは、自分で答えを決めて、CPUに当ててもらいます(ボールは8個まで)。<br>「交互に対戦」では、あなたとCPUが1回ずつ交代で相手の答えを予想し、先に当てた方の勝ちです(あなたが先攻)。</p>
+    </details>
+
+    <p id="timer" class="timer" hidden></p>
+
+    <section>
+      <h2 id="answerTitle">答え</h2>
+      <div class="row" id="answer"></div>
+    </section>
+
+    <section>
+      <h2 id="turn"></h2>
+      <ol class="history" id="history"></ol>
+    </section>
+
+    <section id="play">
+      <h2 id="playTitle">あなたの予想</h2>
+      <div class="row" id="guess"></div>
+      <div class="palette" id="palette"></div>
+      <div class="actions">
+        <button type="button" id="submit" class="primary" disabled>これで決定</button>
+        <button type="button" id="clear">クリア</button>
+      </div>
+    </section>
+
+    <section id="cpuBox" hidden>
+      <h2>あなたの答え(CPUが当てる)</h2>
+      <div class="row" id="secret"></div>
+      <ol class="history" id="cpuHistory"></ol>
+    </section>
+
+    <p id="message" class="message"></p>
+    <button type="button" id="restart" class="primary" hidden>もう一度あそぶ</button>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
